@@ -11,7 +11,10 @@ $("#addContact").on("click", function (event) {
   phoneNumber = $("#phoneNumber").val();
 
   if (phoneNumber === "") {
-    console.log("enter number");
+    $(".message").html(`
+    <div class="alert alert-warning" role="alert">
+    Please enter a phone number!
+    </div>`);
   } else {
     $("#contact-list").html(`
     <tr>
@@ -20,9 +23,9 @@ $("#addContact").on("click", function (event) {
       <td>${phoneNumber}</td>
     </tr>
   `);
+
+    $("#contact-form")[0].reset();
   }
 
-  $("#contact-form")[0].reset();
-
-  console.log(firstName, lastName, phoneNumber);
+  // console.log(firstName, lastName, phoneNumber);
 });

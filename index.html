@@ -23,20 +23,16 @@
     <h1>AJ's Phonebook</h1>
     <div>
       <form id="contact-form">
-        <input type="text" id="firstName" placeholder="First Name" required />
-        <input type="text" id="lastName" placeholder="Last Name" required />
-        <input
-          type="tel"
-          id="phoneNumber"
-          placeholder="Phone Number"
-          required
-        />
+        <input type="text" id="firstName" placeholder="First Name" />
+        <input type="text" id="lastName" placeholder="Last Name" />
+        <input type="tel" id="phoneNumber" placeholder="Phone Number" />
         <button type="submit" id="addContact" value="Add Contact">
           Add Contact
         </button>
       </form>
     </div>
-    <div>
+    <div class="message d-flex justify-content-center align-baseline"></div>
+    <div class="d-flex justify-content-center">
       <table>
         <thead>
           <tr>
