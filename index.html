@@ -20,24 +20,29 @@
     />
   </head>
   <body>
-    <h1>AJ's Phonebook</h1>
-    <div>
+    <h1 class="d-flex justify-content-center">AJ's Phonebook</h1>
+    <div class="d-flex justify-content-center">
       <form id="contact-form">
         <input type="text" id="firstName" placeholder="First Name" />
         <input type="text" id="lastName" placeholder="Last Name" />
-        <input type="tel" id="phoneNumber" placeholder="Phone Number" />
+        <input
+          type="tel"
+          id="phoneNumber"
+          placeholder="Phone Number"
+          onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+        />
         <button type="submit" id="addContact" value="Add Contact">
           Add Contact
         </button>
       </form>
     </div>
-    <div class="message d-flex justify-content-center align-baseline"></div>
+    <div class="message d-flex justify-content-center"></div>
     <div class="d-flex justify-content-center">
       <table>
         <thead>
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th id="first-name">First Name</th>
+            <th id="last-name">Last Name</th>
             <th>Phone Number</th>
           </tr>
         </thead>
@@ -47,8 +52,8 @@
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
       crossorigin="anonymous"
     ></script>
     <script
