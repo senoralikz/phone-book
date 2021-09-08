@@ -26,22 +26,6 @@ const displayContacts = function () {
 
     $("#contact-list").html(contactsHtml);
   }
-
-  // let contactsHtml = "";
-
-  // contacts.forEach(function (currentContact) {
-  //   const currentContactHtml = `
-  //   <tr>
-  //       <td>${currentContact.firstName}</td>
-  //       <td>${currentContact.lastName}</td>
-  //       <td>${currentContact.phoneNumber}</td>
-  //     </tr>
-  //   `;
-
-  //   contactsHtml += currentContactHtml;
-  // });
-
-  // $("#contact-list").html(contactsHtml);
 };
 
 const addContact = function (event) {
@@ -60,24 +44,12 @@ const addContact = function (event) {
     </p>`);
     $(".alert").delay(2000).fadeOut("slow");
   } else {
-    // console.log(person);
     contacts.push(person);
-    // console.log(contacts);
     $("#contact-form")[0].reset();
   }
 
   displayContacts();
 };
-
-// const checkSorted = function (contacts) {
-//   let j;
-
-//   for (let i = 0; i < contacts.length; i++) {
-//     j = i + 1;
-//     if (contacts[j] - contacts[i] < 0) return false;
-//   }
-//   return true;
-// };
 
 const sortFirstName = function () {
   contacts.sort((a, b) =>
@@ -85,22 +57,6 @@ const sortFirstName = function () {
   );
 
   displayContacts();
-
-  // let contactsHtml = "";
-
-  // contacts.forEach(function (currentContact) {
-  //   const currentContactHtml = `
-  //   <tr>
-  //       <td>${currentContact.firstName}</td>
-  //       <td>${currentContact.lastName}</td>
-  //       <td>${currentContact.phoneNumber}</td>
-  //     </tr>
-  //   `;
-
-  //   contactsHtml += currentContactHtml;
-  // });
-
-  // $("#contact-list").html(contactsHtml);
 };
 
 const reverseFirstName = function () {
@@ -109,22 +65,6 @@ const reverseFirstName = function () {
   contacts.reverse();
 
   displayContacts();
-
-  // let contactsHtml = "";
-
-  // contacts.forEach(function (currentContact) {
-  //   const currentContactHtml = `
-  //   <tr>
-  //       <td>${currentContact.firstName}</td>
-  //       <td>${currentContact.lastName}</td>
-  //       <td>${currentContact.phoneNumber}</td>
-  //     </tr>
-  //   `;
-
-  //   contactsHtml += currentContactHtml;
-  // });
-
-  // $("#contact-list").html(contactsHtml);
 };
 
 const sortLastName = function () {
@@ -133,22 +73,6 @@ const sortLastName = function () {
   );
 
   displayContacts();
-
-  // let contactsHtml = "";
-
-  // contacts.forEach(function (currentContact) {
-  //   const currentContactHtml = `
-  //   <tr>
-  //       <td>${currentContact.firstName}</td>
-  //       <td>${currentContact.lastName}</td>
-  //       <td>${currentContact.phoneNumber}</td>
-  //     </tr>
-  //   `;
-
-  //   contactsHtml += currentContactHtml;
-  // });
-
-  // $("#contact-list").html(contactsHtml);
 };
 
 const reverseLastName = function () {
@@ -157,22 +81,6 @@ const reverseLastName = function () {
   contacts.reverse();
 
   displayContacts();
-
-  // let contactsHtml = "";
-
-  // contacts.forEach(function (currentContact) {
-  //   const currentContactHtml = `
-  //   <tr>
-  //       <td>${currentContact.firstName}</td>
-  //       <td>${currentContact.lastName}</td>
-  //       <td>${currentContact.phoneNumber}</td>
-  //     </tr>
-  //   `;
-
-  //   contactsHtml += currentContactHtml;
-  // });
-
-  // $("#contact-list").html(contactsHtml);
 };
 
 const sortingOptions = function () {
@@ -189,13 +97,15 @@ const sortingOptions = function () {
   }
 };
 
-const searchContacts = function (event) {
-  event.preventDefault();
-
-  console.log("you clicked search");
-};
+$(document).ready(function () {
+  $("#searchContacts").on("keyup", function () {
+    let value = $(this).val().toLowerCase();
+    $("#contact-list tr").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+  });
+});
 
 displayContacts();
 $("#addContact").on("click", addContact);
 $("#sortOptions").on("change", sortingOptions);
-$("#searchContacts").on("click", searchContacts);
