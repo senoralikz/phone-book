@@ -2,16 +2,11 @@ h1 {
   color: #00f;
 }
 
-table,
-td {
-  border: 1px solid #000;
-}
-
 .message {
   margin: 20px;
 }
 
-.dropdown {
+.dropSearch {
   margin: 10px;
 }
 
