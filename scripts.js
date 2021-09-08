@@ -43,17 +43,21 @@ const addContact = function (event) {
   $("#contact-list").html(contactsHtml);
 };
 
+// const checkSorted = function (contacts) {
+//   let j;
+
+//   for (let i = 0; i < contacts.length; i++) {
+//     j = i + 1;
+//     if (contacts[j] - contacts[i] < 0) return false;
+//   }
+//   return true;
+// };
+
 const sortFirstName = function () {
-  console.log("you clicked on first name table header");
-
-  console.log(contacts);
-
   contacts.sort((a, b) =>
     a.firstName > b.firstName ? 1 : b.firstName > a.firstName ? -1 : 0
   );
 
-  console.log(contacts);
-
   let contactsHtml = "";
 
   contacts.forEach(function (currentContact) {
@@ -71,17 +75,33 @@ const sortFirstName = function () {
   $("#contact-list").html(contactsHtml);
 };
 
+const reverseFirstName = function () {
+  sortFirstName();
+
+  contacts.reverse();
+
+  let contactsHtml = "";
+
+  contacts.forEach(function (currentContact) {
+    const currentContactHtml = `
+      <tr>
+          <td>${currentContact.firstName}</td>
+          <td>${currentContact.lastName}</td>
+          <td>${currentContact.phoneNumber}</td>
+        </tr>
+      `;
+
+    contactsHtml += currentContactHtml;
+
+    $("#contact-list").html(contactsHtml);
+  });
+};
+
 const sortLastName = function () {
-  console.log("you clicked on last name table header");
-
-  console.log(contacts);
-
   contacts.sort((a, b) =>
     a.lastName > b.lastName ? 1 : b.lastName > a.lastName ? -1 : 0
   );
 
-  console.log(contacts);
-
   let contactsHtml = "";
 
   contacts.forEach(function (currentContact) {
@@ -99,6 +119,43 @@ const sortLastName = function () {
   $("#contact-list").html(contactsHtml);
 };
 
+const reverseLastName = function () {
+  sortLastName();
+
+  contacts.reverse();
+
+  let contactsHtml = "";
+
+  contacts.forEach(function (currentContact) {
+    const currentContactHtml = `
+      <tr>
+          <td>${currentContact.firstName}</td>
+          <td>${currentContact.lastName}</td>
+          <td>${currentContact.phoneNumber}</td>
+        </tr>
+      `;
+
+    contactsHtml += currentContactHtml;
+
+    $("#contact-list").html(contactsHtml);
+  });
+};
+
+const sortingOptions = function () {
+  let selValue = $("#sortOptions").val();
+
+  if (selValue === "1") {
+    sortFirstName();
+  } else if (selValue === "2") {
+    reverseFirstName();
+  } else if (selValue === "3") {
+    sortLastName();
+  } else if (selValue === "4") {
+    reverseLastName();
+  }
+};
+
 $("#addContact").on("click", addContact);
-$("#first-name").on("click", sortFirstName);
-$("#last-name").on("click", sortLastName);
+$("#sortOptions").on("change", sortingOptions);
+// $("#firstAscending").on("click", sortFirstName);
+// $("#lastAscending").on("click", sortLastName);
