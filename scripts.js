@@ -6,10 +6,8 @@ let contacts = [];
 
 const displayContacts = function () {
   if (contacts.length === 0) {
-    $("#no-contacts").html(`<p>No Contacts</p>`);
+    $("#contact-length").html(`<p>No Contacts</p>`);
   } else {
-    $("#no-contacts").html("");
-
     let contactsHtml = "";
 
     contacts.forEach(function (currentContact) {
@@ -18,6 +16,10 @@ const displayContacts = function () {
         <td>${currentContact.firstName}</td>
         <td>${currentContact.lastName}</td>
         <td>${currentContact.phoneNumber}</td>
+        <td><button type="button" onclick="deleteContact(this)" class="btn btn-default"><i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+        </td>
+        </tr>
       </tr>
     `;
 
@@ -25,6 +27,7 @@ const displayContacts = function () {
     });
 
     $("#contact-list").html(contactsHtml);
+    $("#contact-length").html(contacts.length + " Contacts");
   }
 };
 
@@ -46,9 +49,22 @@ const addContact = function (event) {
   } else {
     contacts.push(person);
     $("#contact-form")[0].reset();
+    $("#firstName").focus();
   }
 
   displayContacts();
+};
+
+// const deleteContact = function (ctl) {
+//   $(ctl).parents("tr").remove();
+// };
+
+const deleteContact = function () {
+  let index = contacts.indexOf(this);
+  console.log(contacts);
+  contacts.splice(index, 1);
+  displayContacts();
+  console.log(contacts);
 };
 
 const sortFirstName = function () {
