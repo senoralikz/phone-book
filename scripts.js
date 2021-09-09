@@ -6,6 +6,7 @@ let contacts = [];
 
 const displayContacts = function () {
   if (contacts.length === 0) {
+    $("#contact-list").html("");
     $("#contact-length").html(`<p>No Contacts</p>`);
   } else {
     let contactsHtml = "";
