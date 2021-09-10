@@ -17,10 +17,14 @@ const displayContacts = function () {
         <td>${currentContact.firstName}</td>
         <td>${currentContact.lastName}</td>
         <td>${currentContact.phoneNumber}</td>
-        <td><button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        <td><button type="button" class=".edit-contact btn btn-default" value="${contacts.indexOf(
+          currentContact
+        )}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </button>
         </td>
-        <td><button type="button" onclick="deleteContact(this)" class="btn btn-default"><i class="fa fa-trash" aria-hidden="true"></i>
+        <td><button type="button" class="btn btn-default" onclick="deleteContact(${contacts.indexOf(
+          currentContact
+        )})"><i class="fa fa-trash" aria-hidden="true"></i>
         </button>
         </td>
         </tr>
@@ -57,20 +61,23 @@ const addContact = function (event) {
   }
 
   displayContacts();
+  console.log(contacts);
 };
 
-// const editContact = function () {
-//   console.log("you clicked on edit");
+const editContact = function () {
+  let editValue = $(".edit-contact").val();
+  console.log("you clicked on edit");
+  console.log(selValue);
+};
 
-//   let index = contacts.indexOf(this);
-//   contacts.splice(index, 1);
-//   displayContacts();
-// };
-
-const deleteContact = function () {
-  let index = contacts.indexOf(this);
-  contacts.splice(index, 1);
-  displayContacts();
+const deleteContact = function (index) {
+  console.log("you clicked delete button");
+  if (index >= 0) {
+    contacts.splice(index, 1);
+    displayContacts();
+  } else {
+    console.log("index could not be found");
+  }
 };
 
 const sortFirstName = function () {
@@ -119,6 +126,7 @@ const sortingOptions = function () {
   }
 };
 
+// for filtering through contacts using search bar
 $(document).ready(function () {
   $("#searchContacts").on("keyup", function () {
     let value = $(this).val().toLowerCase();
@@ -130,4 +138,6 @@ $(document).ready(function () {
 
 displayContacts();
 $("#addContact").on("click", addContact);
+$("#update-contact").on("click", editContact);
+$("#delete-contact").on("click", deleteContact);
 $("#sortOptions").on("change", sortingOptions);
