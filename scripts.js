@@ -7,7 +7,7 @@ let contacts = [];
 const displayContacts = function () {
   if (contacts.length === 0) {
     $("#contact-list").html("");
-    $("#contact-length").html(`<p>No Contacts</p>`);
+    $("#contact-length").html(contacts.length + " Contacts");
   } else {
     let contactsHtml = "";
 
@@ -17,6 +17,9 @@ const displayContacts = function () {
         <td>${currentContact.firstName}</td>
         <td>${currentContact.lastName}</td>
         <td>${currentContact.phoneNumber}</td>
+        <td><button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </button>
+        </td>
         <td><button type="button" onclick="deleteContact(this)" class="btn btn-default"><i class="fa fa-trash" aria-hidden="true"></i>
         </button>
         </td>
@@ -56,16 +59,18 @@ const addContact = function (event) {
   displayContacts();
 };
 
-// const deleteContact = function (ctl) {
-//   $(ctl).parents("tr").remove();
+// const editContact = function () {
+//   console.log("you clicked on edit");
+
+//   let index = contacts.indexOf(this);
+//   contacts.splice(index, 1);
+//   displayContacts();
 // };
 
 const deleteContact = function () {
   let index = contacts.indexOf(this);
-  console.log(contacts);
   contacts.splice(index, 1);
   displayContacts();
-  console.log(contacts);
 };
 
 const sortFirstName = function () {
