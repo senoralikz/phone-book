@@ -1,6 +1,7 @@
 let firstName;
 let lastName;
 let phoneNumber;
+let index;
 let person = {};
 let contacts = [];
 
@@ -17,9 +18,11 @@ const displayContacts = function () {
         <td>${currentContact.firstName}</td>
         <td>${currentContact.lastName}</td>
         <td>${currentContact.phoneNumber}</td>
-        <td><button type="button" class=".edit-contact btn btn-default" value="${contacts.indexOf(
+        <td><button type="button" class="edit-contact btn btn-default" value="${contacts.indexOf(
           currentContact
-        )}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        )}" onclick="editContact(${contacts.indexOf(
+        currentContact
+      )})" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </button>
         </td>
         <td><button type="button" class="btn btn-default" onclick="deleteContact(${contacts.indexOf(
@@ -64,10 +67,36 @@ const addContact = function (event) {
   console.log(contacts);
 };
 
-const editContact = function () {
-  let editValue = $(".edit-contact").val();
+const editContact = function (editValue) {
+  index = editValue;
   console.log("you clicked on edit");
-  console.log(selValue);
+  // console.log(index);
+
+  $("#firstName-update").val(contacts[index].firstName);
+  $("#lastName-update").val(contacts[index].lastName);
+  $("#phoneNumber-update").val(contacts[index].phoneNumber);
+};
+
+const submitEdit = function (arr, index) {
+  if ($("#phoneNumber-update").val() === "") {
+    $(".modal-message").html(`
+      <p class="alert alert-warning" role="alert">
+      Please enter a phone number!
+      </p>`);
+    $(".alert").delay(2000).fadeOut("slow");
+  } else {
+    arr[index].firstName = $("#firstName-update").val();
+    arr[index].lastName = $("#lastName-update").val();
+    arr[index].phoneNumber = $("#phoneNumber-update").val();
+
+    console.log(index);
+    console.log(contacts);
+
+    $("#exampleModal").modal("hide");
+    $("#update-form")[0].reset();
+
+    displayContacts();
+  }
 };
 
 const deleteContact = function (index) {
@@ -138,6 +167,6 @@ $(document).ready(function () {
 
 displayContacts();
 $("#addContact").on("click", addContact);
-$("#update-contact").on("click", editContact);
+$("#update-contact").on("click", submitEdit);
 $("#delete-contact").on("click", deleteContact);
 $("#sortOptions").on("change", sortingOptions);

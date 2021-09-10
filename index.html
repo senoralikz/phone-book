@@ -85,31 +85,32 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form>
+            <form id='update-form'>
               <div class="form-group">
-                <label for="firstName-update">First Name</label>
+                <label for="firstName-update">First Name:</label>
                 <input type="text" id="firstName-update" autofocus />
               </div>
               <br>
               <div class="form-group">
-                <label for="lastName-update">Last Name</label>
+                <label for="lastName-update">Last Name:</label>
                 <input type="text" id="lastName-update" />
               </div>
               <br>
               <div class="form-group">
-                <label for="phoneNumber-update">Phone Number</label>
+                <label for="phoneNumber-update">Phone Number:</label>
                 <input
                   type="tel"
                   id="phoneNumber-update"
                   onkeypress="return event.charCode >= 48 && event.charCode <= 57"
                 />
               </div>
-              <p class="modal-message"></p>
+              <br>
+              <div class="modal-message d-flex justify-content-center"></div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button class='btn btn-primary' type="submit" id="update-contact">
+            <button class='btn btn-primary' type="submit" onclick="submitEdit(contacts, index)" id="update-contact">
               Update Contact
             </button>
           </div>
