@@ -15,4 +15,10 @@ label {
   margin: 10px;
 }
 
+.delete-warning {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 /*# sourceMappingURL=styles.css.map */

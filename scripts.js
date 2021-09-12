@@ -64,13 +64,10 @@ const addContact = function (event) {
   }
 
   displayContacts();
-  console.log(contacts);
 };
 
 const editContact = function (editValue) {
   index = editValue;
-  console.log("you clicked on edit");
-  // console.log(index);
 
   $("#firstName-update").val(contacts[index].firstName);
   $("#lastName-update").val(contacts[index].lastName);
@@ -83,14 +80,11 @@ const submitEdit = function (arr, index) {
       <p class="alert alert-warning" role="alert">
       Please enter a phone number!
       </p>`);
-    $(".alert").delay(2000).fadeOut("slow");
+    $(".alert-warning").delay(2000).fadeOut("slow");
   } else {
     arr[index].firstName = $("#firstName-update").val();
     arr[index].lastName = $("#lastName-update").val();
     arr[index].phoneNumber = $("#phoneNumber-update").val();
-
-    console.log(index);
-    console.log(contacts);
 
     $("#exampleModal").modal("hide");
     $("#update-form")[0].reset();
@@ -100,12 +94,15 @@ const submitEdit = function (arr, index) {
 };
 
 const deleteContact = function (index) {
-  console.log("you clicked delete button");
   if (index >= 0) {
     contacts.splice(index, 1);
     displayContacts();
   } else {
-    console.log("index could not be found");
+    $(".delete-warning").html(`
+      <div class="alert alert-danger" role="alert">
+        Was not able to sucessfully delete contact.
+      </div>`);
+    $(".alert-danger").delay(2000).fadeOut("slow");
   }
 };
 
